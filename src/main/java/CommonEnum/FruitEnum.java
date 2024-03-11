@@ -1,3 +1,5 @@
+package CommonEnum;
+
 import java.math.BigDecimal;
 
 /**
@@ -5,13 +7,26 @@ import java.math.BigDecimal;
  * @create 2024-03-11-15:25
  */
 public enum FruitEnum {
-    Apple(BigDecimal.valueOf(8)),
-    Strawberry(BigDecimal.valueOf(13));
+    Apple(BigDecimal.valueOf(8),"1"),
+    Strawberry(BigDecimal.valueOf(13),"2"),
+    Mango(BigDecimal.valueOf(20),"3");
 
-    private BigDecimal price;
+    public BigDecimal price;
+    public String type;
 
-    private FruitEnum(BigDecimal price){
+    private FruitEnum(BigDecimal price,String type){
         this.price = price;
+        this.type = type;
     }
+
+    public static BigDecimal getPriceByType(String targetType) {
+        for (FruitEnum fruit : FruitEnum.values()) {
+            if (fruit.type.equals(targetType)) {
+                return fruit.price;
+            }
+        }
+        return BigDecimal.ZERO;
+    }
+
 
 }
